@@ -19,6 +19,20 @@ user_repo = UserRepository()
 #     users = [gita, mahesh]
 #     user_repo.create_many(session=session, users=users)
 
+# with Session(engine) as session:
+#     result = user_repo.get_by_id(session=session, id=25)
+#     print(result)
+
+# with Session(engine) as session:
+#     user_repo.update_by_id(
+#         session=session, id=25, name="ramesh", password="ramesh!", status=False
+#     )
+
+# with Session(engine) as session:
+#     result = user_repo.get_by_id(session=session, id=25)
+#     print(result)
+
 with Session(engine) as session:
-    result = user_repo.get_by_id(session=session, id=19)
-    print(result)
+    count = user_repo.get_count(session=session)
+    for i in range(1, count + 1):
+        user_repo.delete_by_id(session=session, id=i)

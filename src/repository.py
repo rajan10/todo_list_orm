@@ -23,3 +23,21 @@ class UserRepository:
     def create_many(self, session: Session, users: list[User]) -> None:
         session.add_all(users)
         session.commit()
+
+    def update_by_id(
+        self, session: Session, name: str, password: str, status: bool, id: int
+    ) -> None:
+        result = self.get_by_id(session, id)
+        result.name = name
+        result.password = password
+        result.status = status
+        session.commit()
+
+    def delete_by_id(self, session: Session, id: int) -> None:
+        result = self.get_by_id(session, id)
+        session.delete(result)
+        session.commit()
+
+    def get_count(self, session: Session) -> int:
+        result = session.query(User).count()
+        return result
