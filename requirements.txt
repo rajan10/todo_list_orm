@@ -1,0 +1,4 @@
+
+python-decouple==3.8
+mysqlclient==2.2.0
+SQLAlchemy==1.4.22
